@@ -95,7 +95,7 @@ files = []
 labels = []
 
 # Parallel(n_jobs=4)(delayed(load_data)(x) for x in progressbar.progressbar(persons[:500]))
-for x in progressbar.progressbar(persons[:5000]):
+for x in progressbar.progressbar(persons[:1000]):
     load_data(x)
     #print(x,os.path.basename(x).split("-")[0])
     #files.append(extract_features(x))
@@ -114,7 +114,7 @@ labels = np.array(labels)
 X_train, X_test, y_train, y_test = split_data(files,labels)
 
 model = define_model(classes=classes)
-history = model.fit(X_train, y_train, batch_size=256, epochs=100,
+history = model.fit(X_train, y_train, batch_size=32, epochs=100,
                     validation_data=(X_test, y_test))
 
 # Check out our train accuracy and validation accuracy over epochs.
